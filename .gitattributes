@@ -1,2 +1,2 @@
 *.tex linguist-documentation
-db_cp/wwwroot* linguist-documentation
+db_cp/wwwroot/* linguist-documentation
