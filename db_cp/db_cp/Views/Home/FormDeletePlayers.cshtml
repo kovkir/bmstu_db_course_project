@@ -1,0 +1,66 @@
+﻿@model HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.DeletePlayer"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Surname"
+                       asp-for="deletePlayerViewModel.surname"
+                       type="text">
+
+                <span asp-validation-for="deletePlayerViewModel.surname" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Country"
+                       asp-for="deletePlayerViewModel.country"
+                       type="text">
+
+                <span asp-validation-for="deletePlayerViewModel.country" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Club name"
+                       asp-for="deletePlayerViewModel.clubName"
+                       type="text">
+
+                <span asp-validation-for="deletePlayerViewModel.clubName" />
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Rating"
+                       asp-for="deletePlayerViewModel.rating"
+                       type="number">
+
+                <span asp-validation-for="deletePlayerViewModel.rating" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Delete player
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

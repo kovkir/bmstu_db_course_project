@@ -1,0 +1,22 @@
+﻿@model Player
+
+<div class="col-md-4 equal-height" style="height: 300px;">
+    <div class="item">
+        <div class="info">
+            <h4>@Model.Surname</h4>
+            <h4><font color="#ff5a6e">@Model.Rating</font></h4>
+            <p>@Model.Country</p>
+            <p>@ViewBag.ClubName</p>
+            <p>@Model.Price $</p>
+
+            <div class="read-more">
+                <a asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-isUpdate="@IsUpdata.PlayerIsDeleted"
+                   asp-route-playerId="@Model.Id"
+                   class="more-btn">Delete</a>
+            </div>
+
+        </div>
+    </div>
+</div>

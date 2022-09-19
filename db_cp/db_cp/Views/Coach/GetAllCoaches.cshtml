@@ -1,0 +1,78 @@
+﻿@model CoachViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="Coach"
+                       asp-action="GetAllCoaches"
+                       asp-route-sortOrder="@ViewBag.IdSort"
+                       asp-route-surname="@Model.filterCoachViewModel.surname"
+                       asp-route-country="@Model.filterCoachViewModel.country"
+                       asp-route-minWorkExperience="@Model.filterCoachViewModel.minWorkExperience"
+                       asp-route-maxWorkExperience="@Model.filterCoachViewModel.maxWorkExperience">
+                        <h3><font color="#ff5a6e">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Coach"
+                       asp-action="GetAllCoaches"
+                       asp-route-sortOrder="@ViewBag.SurnameSort"
+                       asp-route-surname="@Model.filterCoachViewModel.surname"
+                       asp-route-country="@Model.filterCoachViewModel.country"
+                       asp-route-minWorkExperience="@Model.filterCoachViewModel.minWorkExperience"
+                       asp-route-maxWorkExperience="@Model.filterCoachViewModel.maxWorkExperience">
+                        <h3><font color="#ff5a6e">Surname</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Coach"
+                       asp-action="GetAllCoaches"
+                       asp-route-sortOrder="@ViewBag.CountrySort"
+                       asp-route-surname="@Model.filterCoachViewModel.surname"
+                       asp-route-country="@Model.filterCoachViewModel.country"
+                       asp-route-minWorkExperience="@Model.filterCoachViewModel.minWorkExperience"
+                       asp-route-maxWorkExperience="@Model.filterCoachViewModel.maxWorkExperience">
+                        <h3><font color="#ff5a6e">Country</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Coach"
+                       asp-action="GetAllCoaches"
+                       asp-route-sortOrder="@ViewBag.WorkExperienceSort"
+                       asp-route-surname="@Model.filterCoachViewModel.surname"
+                       asp-route-country="@Model.filterCoachViewModel.country"
+                       asp-route-minWorkExperience="@Model.filterCoachViewModel.minWorkExperience"
+                       asp-route-maxWorkExperience="@Model.filterCoachViewModel.maxWorkExperience">
+                        <h3><font color="#ff5a6e">WorkExperience</font></h3>
+                    </a>
+                </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        <a href="#">
+                            <h3><font color="#ff5a6e">MySquad</font></h3>
+                        </a>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (Coach coach in Model.coaches)
+                {
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (Model.myCoachId == coach.Id)
+                            ViewBag.wasAdded = true;
+                        else
+                            ViewBag.wasAdded = false;
+                    }
+
+                    @Html.Partial("AllCoaches", coach)
+                }
+            }
+        </tbody>
+    </table>
+</div>

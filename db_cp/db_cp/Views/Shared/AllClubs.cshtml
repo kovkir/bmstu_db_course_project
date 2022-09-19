@@ -1,0 +1,15 @@
+﻿@model Club
+
+<tr>
+    <th scope="row"><h3>@Model.Id</h3></th>
+    <td><h3>@Model.Name</h3></td>
+    <td><h3>@Model.Country</h3></td>
+    <td><h3>@Model.FoundationDate</h3></td>
+
+    <td>
+        <a class="btn btn-primary btn-block"
+           asp-controller="Player"
+           asp-action="GetAllPlayers"
+           asp-route-clubName="@Model.Name">View players</a>
+    </td>
+</tr>

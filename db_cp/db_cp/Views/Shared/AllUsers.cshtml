@@ -1,0 +1,39 @@
+﻿@model User
+
+<tr>
+    <th scope="row"><h3>@Model.Id</h3></th>
+    <td><h3>@Model.Login</h3></td>
+    <td><h3>@Model.Permission</h3></td>
+    <td><h3>@ViewBag.RatingSquad</h3></td>
+
+    @if (Model.Permission == "user")
+    {
+        <td>
+            <a class="btn btn-success btn-block"
+               asp-controller="User"
+               asp-action="СhangePermission"
+               asp-route-id="@Model.Id"
+               asp-route-permission="admin">Make admin</a>
+        </td>
+    }
+    else if (Model.Login == User.Identity.Name)
+    {
+        <td>
+            <a class="btn btn-warning btn-block disabled"
+               asp-controller="User"
+               asp-action="СhangePermission"
+               asp-route-id="@Model.Id"
+               asp-route-permission="user">Make user</a>
+        </td>
+    }
+    else
+    {
+        <td>
+            <a class="btn btn-warning btn-block"
+               asp-controller="User"
+               asp-action="СhangePermission"
+               asp-route-id="@Model.Id"
+               asp-route-permission="user">Make user</a>
+        </td>
+    }
+</tr>

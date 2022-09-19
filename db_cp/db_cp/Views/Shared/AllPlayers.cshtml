@@ -1,0 +1,35 @@
+﻿@model Player
+
+<tr>
+    <th scope="row"><h3>@Model.Id</h3></th>
+    <td><h3>@Model.Surname</h3></td>
+    <td><h3>@Model.Rating</h3></td>
+    <td><h3>@Model.Country</h3></td>
+    <td><h3>@ViewBag.ClubName</h3></td>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <td><h3>@Model.Price$</h3></td>
+
+        @if (ViewBag.wasAdded == false)
+        {
+            <td>
+                <a class="btn btn-success btn-block"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-isUpdate="@IsUpdata.PlayerIsAdded"
+                   asp-route-playerId="@Model.Id">Add player</a>
+            </td>
+        }
+        else
+        {
+            <td>
+                <a class="btn btn-danger btn-block"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-isUpdate="@IsUpdata.PlayerIsDeleted"
+                   asp-route-playerId="@Model.Id">Delete player</a>
+            </td>
+        }
+    }
+</tr>

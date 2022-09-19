@@ -1,0 +1,32 @@
+﻿@model Coach
+
+<tr>
+    <th scope="row"><h3>@Model.Id</h3></th>
+    <td><h3>@Model.Surname</h3></td>
+    <td><h3>@Model.Country</h3></td>
+    <td><h3>@Model.WorkExperience</h3></td>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (ViewBag.wasAdded == false)
+        {
+            <td>
+                <a class="btn btn-success btn-block"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-isUpdate="@IsUpdata.CoachIsAdded"
+                   asp-route-coachId="@Model.Id">Add coach</a>
+            </td>
+        }
+        else
+        {
+            <td>
+                <a class="btn btn-danger btn-block"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-isUpdate="@IsUpdata.CoachIsDeleted"
+                   asp-route-coachId="@Model.Id">Delete coach</a>
+            </td>
+        }
+    }
+</tr>

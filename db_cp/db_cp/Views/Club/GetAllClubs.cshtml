@@ -1,0 +1,68 @@
+﻿@model ClubViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="Club"
+                       asp-action="GetAllClubs"
+                       asp-route-sortOrder="@ViewBag.IdSort"
+                       asp-route-name="@Model.filterClubViewModel.name"
+                       asp-route-country="@Model.filterClubViewModel.country"
+                       asp-route-minFoundationDate="@Model.filterClubViewModel.minFoundationDate"
+                       asp-route-maxFoundationDate="@Model.filterClubViewModel.maxFoundationDate">
+                        <h3><font color="#ff5a6e">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Club"
+                       asp-action="GetAllClubs"
+                       asp-route-sortOrder="@ViewBag.NameSort"
+                       asp-route-name="@Model.filterClubViewModel.name"
+                       asp-route-country="@Model.filterClubViewModel.country"
+                       asp-route-minFoundationDate="@Model.filterClubViewModel.minFoundationDate"
+                       asp-route-maxFoundationDate="@Model.filterClubViewModel.maxFoundationDate">
+                        <h3><font color="#ff5a6e">NameClub</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Club"
+                       asp-action="GetAllClubs"
+                       asp-route-sortOrder="@ViewBag.CountrySort"
+                       asp-route-name="@Model.filterClubViewModel.name"
+                       asp-route-country="@Model.filterClubViewModel.country"
+                       asp-route-minFoundationDate="@Model.filterClubViewModel.minFoundationDate"
+                       asp-route-maxFoundationDate="@Model.filterClubViewModel.maxFoundationDate">
+                        <h3><font color="#ff5a6e">Country</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Club"
+                       asp-action="GetAllClubs"
+                       asp-route-sortOrder="@ViewBag.FoundationDateSort"
+                       asp-route-name="@Model.filterClubViewModel.name"
+                       asp-route-country="@Model.filterClubViewModel.country"
+                       asp-route-minFoundationDate="@Model.filterClubViewModel.minFoundationDate"
+                       asp-route-maxFoundationDate="@Model.filterClubViewModel.maxFoundationDate">
+                        <h3><font color="#ff5a6e">FoundationDate</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <h3><font color="#ff5a6e">Players</font></h3>
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (Club club in Model.clubs)
+                {
+                    if (club.Id != null)
+                        @Html.Partial("AllClubs", club)
+                }
+            }
+        </tbody>
+    </table>
+</div>

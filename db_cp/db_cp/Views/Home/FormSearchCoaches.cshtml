@@ -1,0 +1,64 @@
+﻿@model HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.SearchCoaches"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Surname"
+                       asp-for="filterCoachViewModel.surname"
+                       type="text">
+
+                <span asp-validation-for="filterCoachViewModel.surname" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Country"
+                       asp-for="filterCoachViewModel.country"
+                       type="text">
+
+                <span asp-validation-for="filterCoachViewModel.country" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Minimal work experience"
+                       asp-for="filterCoachViewModel.minWorkExperience"
+                       type="number">
+
+                <span asp-validation-for="filterCoachViewModel.minWorkExperience" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Maximum work experience"
+                       asp-for="filterCoachViewModel.maxWorkExperience"
+                       type="number">
+
+                <span asp-validation-for="filterCoachViewModel.maxWorkExperience" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Find coaches
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

@@ -1,0 +1,20 @@
+﻿@model Coach
+
+<div class="col-md-4 col-md-offset-4 equal-height" style="height: 210px;">
+    <div class="item">
+        <div class="info">
+            <h4>@Model.Surname</h4>
+            <p>@Model.Country</p>
+            <p>Work Experience: @Model.WorkExperience</p>
+
+            <div class="read-more">
+                <a asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-isUpdate="@IsUpdata.CoachIsDeleted"
+                   asp-route-coachId="@Model.Id"
+                   class="more-btn">Delete</a>
+            </div>
+
+        </div>
+    </div>
+</div>

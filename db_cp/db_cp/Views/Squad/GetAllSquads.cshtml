@@ -1,0 +1,54 @@
+﻿@model SquadViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="Squad" asp-action="GetAllSquads" asp-route-sortOrder="@ViewBag.IdSort">
+                        <h3><font color="#ff5a6e">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Squad" asp-action="GetAllSquads" asp-route-sortOrder="@ViewBag.NameSort">
+                        <h3><font color="#ff5a6e">Name</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Squad" asp-action="GetAllSquads">
+                        <h3><font color="#ff5a6e">CoachSurname</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Squad" asp-action="GetAllSquads" asp-route-sortOrder="@ViewBag.RatingSort">
+                        <h3><font color="#ff5a6e">Rating</font></h3>
+                    </a>
+                </td>
+
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <a href="#">
+                            <h3><font color="#ff5a6e">Players</font></h3>
+                        </a>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (Squad squad in Model.squads)
+                {
+                    Coach coach = Model.coaches.FirstOrDefault(elem => elem.Id == squad.CoachId);
+
+                    if (coach == null)
+                        ViewBag.CoachName = "Null";
+                    else
+                        ViewBag.CoachName = coach.Surname;
+
+                    @Html.Partial("ALLSquads", squad)
+                }
+            }
+        </tbody>
+    </table>
+</div>

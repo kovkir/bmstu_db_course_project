@@ -1,0 +1,136 @@
+﻿@model PlayerViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="Player"
+                       asp-action="GetAllPlayers"
+                       asp-route-sortOrder="@ViewBag.IdSort"
+                       asp-route-surname="@Model.filterPlayerViewModel.surname"
+                       asp-route-country="@Model.filterPlayerViewModel.country"
+                       asp-route-clubName="@Model.filterPlayerViewModel.clubName"
+                       asp-route-minPrice="@Model.filterPlayerViewModel.minPrice"
+                       asp-route-maxPrice="@Model.filterPlayerViewModel.maxPrice"
+                       asp-route-minRating="@Model.filterPlayerViewModel.minRating"
+                       asp-route-maxRating="@Model.filterPlayerViewModel.maxRating"
+                       asp-route-squadId="@Model.filterPlayerViewModel.squadId">
+                        <h3><font color="#ff5a6e">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Player"
+                       asp-action="GetAllPlayers"
+                       asp-route-sortOrder="@ViewBag.SurnameSort"
+                       asp-route-surname="@Model.filterPlayerViewModel.surname"
+                       asp-route-country="@Model.filterPlayerViewModel.country"
+                       asp-route-clubName="@Model.filterPlayerViewModel.clubName"
+                       asp-route-minPrice="@Model.filterPlayerViewModel.minPrice"
+                       asp-route-maxPrice="@Model.filterPlayerViewModel.maxPrice"
+                       asp-route-minRating="@Model.filterPlayerViewModel.minRating"
+                       asp-route-maxRating="@Model.filterPlayerViewModel.maxRating"
+                       asp-route-squadId="@Model.filterPlayerViewModel.squadId">
+                        <h3><font color="#ff5a6e">Surname</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Player"
+                       asp-action="GetAllPlayers"
+                       asp-route-sortOrder="@ViewBag.RatingSort"
+                       asp-route-surname="@Model.filterPlayerViewModel.surname"
+                       asp-route-country="@Model.filterPlayerViewModel.country"
+                       asp-route-clubName="@Model.filterPlayerViewModel.clubName"
+                       asp-route-minPrice="@Model.filterPlayerViewModel.minPrice"
+                       asp-route-maxPrice="@Model.filterPlayerViewModel.maxPrice"
+                       asp-route-minRating="@Model.filterPlayerViewModel.minRating"
+                       asp-route-maxRating="@Model.filterPlayerViewModel.maxRating"
+                       asp-route-squadId="@Model.filterPlayerViewModel.squadId">
+                        <h3><font color="#ff5a6e">Rating</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Player"
+                       asp-action="GetAllPlayers"
+                       asp-route-sortOrder="@ViewBag.CountrySort"
+                       asp-route-surname="@Model.filterPlayerViewModel.surname"
+                       asp-route-country="@Model.filterPlayerViewModel.country"
+                       asp-route-clubName="@Model.filterPlayerViewModel.clubName"
+                       asp-route-minPrice="@Model.filterPlayerViewModel.minPrice"
+                       asp-route-maxPrice="@Model.filterPlayerViewModel.maxPrice"
+                       asp-route-minRating="@Model.filterPlayerViewModel.minRating"
+                       asp-route-maxRating="@Model.filterPlayerViewModel.maxRating"
+                       asp-route-squadId="@Model.filterPlayerViewModel.squadId">
+                        <h3><font color="#ff5a6e">Country</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Player"
+                       asp-action="GetAllPlayers"
+                       asp-route-sortOrder="@ViewBag.ClubNameSort"
+                       asp-route-surname="@Model.filterPlayerViewModel.surname"
+                       asp-route-country="@Model.filterPlayerViewModel.country"
+                       asp-route-clubName="@Model.filterPlayerViewModel.clubName"
+                       asp-route-minPrice="@Model.filterPlayerViewModel.minPrice"
+                       asp-route-maxPrice="@Model.filterPlayerViewModel.maxPrice"
+                       asp-route-minRating="@Model.filterPlayerViewModel.minRating"
+                       asp-route-maxRating="@Model.filterPlayerViewModel.maxRating"
+                       asp-route-squadId="@Model.filterPlayerViewModel.squadId">
+                        <h3><font color="#ff5a6e">Club</font></h3>
+                    </a>
+                </td>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        <a asp-controller="Player"
+                           asp-action="GetAllPlayers"
+                           asp-route-sortOrder="@ViewBag.PriceSort"
+                           asp-route-surname="@Model.filterPlayerViewModel.surname"
+                           asp-route-country="@Model.filterPlayerViewModel.country"
+                           asp-route-clubName="@Model.filterPlayerViewModel.clubName"
+                           asp-route-minPrice="@Model.filterPlayerViewModel.minPrice"
+                           asp-route-maxPrice="@Model.filterPlayerViewModel.maxPrice"
+                           asp-route-minRating="@Model.filterPlayerViewModel.minRating"
+                           asp-route-maxRating="@Model.filterPlayerViewModel.maxRating"
+                           asp-route-squadId="@Model.filterPlayerViewModel.squadId">
+                            <h3><font color="#ff5a6e">Price</font></h3>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <h3><font color="#ff5a6e">MySquad</font></h3>
+                        </a>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (Player player in Model.players)
+                {
+                    if (Model.filterPlayerViewModel.clubName == null)
+                        ViewBag.ClubName = Model.clubs.FirstOrDefault(elem => elem.Id == player.ClubId).Name;
+                    else
+                        ViewBag.ClubName = Model.filterPlayerViewModel.clubName;
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        ViewBag.wasAdded = false;
+
+                        foreach (Player myPlayer in Model.myPlayers)
+                        {
+                            if (myPlayer.Id == player.Id)
+                            {
+                                ViewBag.wasAdded = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    @Html.Partial("ALLPlayers", player)
+                }
+            }
+            </tbody>
+        </table>
+</div>

@@ -1,0 +1,140 @@
+﻿@model MySquadViewModel
+
+@if (Model._isUpdate == IsUpdata.PlayerIsAdded)
+{
+    <div class="alert alert-success" role="alert">
+        <h4><strong>Player added!</strong> @Model.player.Surname joins the squad.</h4>
+</div>
+}
+else if (Model._isUpdate == IsUpdata.CoachIsAdded)
+{
+    <div class="alert alert-success" role="alert">
+        <h4><strong>Coach added!</strong> @Model.coach.Surname joins the squad.</h4>
+    </div>
+}
+else if (Model._isUpdate == IsUpdata.PlayerIsDeleted)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4><strong>Player deleted!</strong> @Model.player.Surname left the squad.</h4>
+    </div>
+}
+else if (Model._isUpdate == IsUpdata.CoachIsDeleted)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4><strong>Coach deleted!</strong> @Model.coach.Surname left the squad.</h4>
+    </div>
+}
+
+
+<div class="text-light site-heading">
+    <h2>The football club <font color="#ff5a6e">@Model.mySquad.Name</font> is ready to win</h2>
+</div>
+
+<div class="blog-area full-width">
+    <div class="container">
+        <div class="text-light">
+            <h1>THE RATING OF MY SQUAD IS <font color="#ff5a6e">@Model.mySquad.Rating</font></h1>
+        </div>
+
+        <div class="row">
+
+            <div class="text-light font-weight-bold">
+                <h2><b>THE <font color="#ff5a6e">PLAYERS</font> OF MY SQUAD</b></h2>
+            </div>
+
+            <div class="btn-group btn-group-lg btn-block col-md-offset-1" role="group" aria-label="Basic example">
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-sortOrder="@ViewBag.SurnameSort">Surname</a>
+
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-sortOrder="@ViewBag.RatingSort">Rating</a>
+
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-sortOrder="@ViewBag.CountrySort">Country</a>
+
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-sortOrder="@ViewBag.ClubNameSort">Club Name</a>
+
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MySquad"
+                   asp-action="GetMySquad"
+                   asp-route-sortOrder="@ViewBag.PriceSort">Price</a>
+            </div>
+
+            <h1></h1>
+
+            <div class="blog-items">
+                @if (Model.myPlayers.Count() == 0)
+                {
+                    <div class="col-md-4 col-md-offset-4 equal-height" style="height: 150px;">
+                        <div class="item">
+                            <div class="info">
+                                <h4> empty</h4>
+                                <p>There are no players in the squad</p>
+
+                                <div class="read-more">
+                                    <a asp-controller="Player"
+                                       asp-action="GetAllPlayers"
+                                       class="more-btn">Add Player</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (Player player in Model.myPlayers)
+                    {
+                        ViewBag.ClubName = Model.clubs.FirstOrDefault(elem => elem.Id == player.ClubId).Name;
+
+                        @Html.Partial("MySquadPlayers", player)
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="text-light font-weight-bold">
+                <h2><b>THE <font color="#ff5a6e">HEAD COACH</font> OF MY SQUAD</b></h2>
+            </div>
+
+            <div class="blog-items">
+
+                @if (Model.myCoach == null)
+                {
+                    <div class="col-md-4 col-md-offset-4 equal-height" style="height: 150px;">
+                        <div class="item">
+                            <div class="info">
+                                <h4>empty</h4>
+                                <p>There is no coach in the squad</p>
+
+                                <div class="read-more">
+                                    <a asp-controller="Coach"
+                                       asp-action="GetAllCoaches"
+                                       class="more-btn">Add Coach</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @Html.Partial("MySquadCoach", Model.myCoach)
+                }
+            </div>
+        </div>
+    </div>
+</div>

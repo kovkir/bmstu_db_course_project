@@ -1,0 +1,64 @@
+﻿@model HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.SearchClubs"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Name"
+                       asp-for="filterClubViewModel.name"
+                       type="text">
+
+                <span asp-validation-for="filterClubViewModel.name" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Country"
+                       asp-for="filterClubViewModel.country"
+                       type="text">
+
+                <span asp-validation-for="filterClubViewModel.country" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Minimal foundation date"
+                       asp-for="filterClubViewModel.minFoundationDate"
+                       type="number">
+
+                <span asp-validation-for="filterClubViewModel.minFoundationDate" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Maximum foundation date"
+                       asp-for="filterClubViewModel.maxFoundationDate"
+                       type="number">
+
+                <span asp-validation-for="filterClubViewModel.maxFoundationDate" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Find clubs
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/bootsnav.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/flaticon-set.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/themify-icons.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header id="home">
+        @*navbar navbar-default navbar-sticky bootsnav on no-full*@
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default active-border navbar-fixed white bootsnav on no-full navbar-transparent">
+
+            <div class="container">
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav button theme">
+                    <ul>
+                        <li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Account" asp-action="Logout">Logout</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Login">Login</a>
+                            }
+                        </li>
+                        <li>
+                            <a asp-controller="Account" asp-action="Register">Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="/img/logo-light.png" class="logo logo-display" alt="Logo">
+                        <img src="/img/logo.png" class="logo logo-scrolled" alt="Logo">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
+                        <li class="">
+                            <a class="smooth-menu" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="">
+                                <a class="smooth-menu" asp-controller="MySquad" asp-action="GetMySquad">MySquad</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="">
+                                <a class="smooth-menu" asp-controller="User" asp-action="GetAllUsers">Users</a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown dropdown-right">
+                                <a class="smooth-menu" asp-controller="Squad" asp-action="GetAllSquads">Squads</a>
+                            </li>
+                        }
+                        <li class="">
+                            <a class="smooth-menu" asp-controller="Player" asp-action="GetAllPlayers">Players</a>
+                        </li>
+                        <li class="">
+                            <a class="smooth-menu" asp-controller="Coach" asp-action="GetAllCoaches">Coaches</a>
+                        </li>
+                        <li class="">
+                            <a class="smooth-menu" asp-controller="Club" asp-action="GetAllClubs">Clubs</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+
+            </div>
+
+        </nav>
+        <!-- End Navigation -->
+
+    </header>
+
+    <div class="banner-area auto-height text-center text-normal shadow dark bg-fixed" style="background-image: url(/img/fifa.png);">
+        <div class="container">
+            <div class="row">
+                <div class="content-box video-popup">
+                    <div class="col-md-12 col-md-offset-0">
+                        <div class="content">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/bootsnav.min.js"></script>
+    <script src="~/js/count-to.min.js"></script>
+    <script src="~/js/equal-height.min.js"></script>
+    <script src="~/js/isotope.pkgd.min.js"></script>
+    <script src="~/js/jaliswall.js"></script>
+    <script src="~/js/jquery-1.12.4.min.js"></script>
+    <script src="~/js/jquery.appear.js"></script>
+    <script src="~/js/jquery.easing.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/modernizr.custom.13711.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/plugins.min.js"></script>
+    <script src="~/js/wow.min.js"></script>
+    <script src="~/js/html5/html5shiv.min.js"></script>
+    <script src="~/js/html5/respond.min.js"></script>
+</body>
+</html>

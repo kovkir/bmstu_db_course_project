@@ -1,0 +1,18 @@
+﻿@model Squad
+
+<tr>
+    <th scope="row"><h3>@Model.Id</h3></th>
+    <td><h3>@Model.Name</h3></td>
+    <td><h3>@ViewBag.CoachName</h3></td>
+    <td><h3>@Model.Rating</h3></td>
+
+    @if (User.IsInRole("admin"))
+    {
+        <td>
+            <a class="btn btn-primary btn-block"
+               asp-controller="Player"
+               asp-action="GetAllPlayers"
+               asp-route-squadId="@Model.Id">View players</a>
+        </td>
+    }
+</tr>

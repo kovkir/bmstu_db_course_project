@@ -1,0 +1,77 @@
+﻿@model HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.AddPlayer"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Surname"
+                       asp-for="addPlayerViewModel.surname"
+                       type="text">
+
+                <span asp-validation-for="addPlayerViewModel.surname" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Country"
+                       asp-for="addPlayerViewModel.country"
+                       type="text">
+
+                <span asp-validation-for="addPlayerViewModel.country" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Club name"
+                       asp-for="addPlayerViewModel.clubName"
+                       type="text">
+
+                <span asp-validation-for="addPlayerViewModel.clubName" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Price"
+                       asp-for="addPlayerViewModel.price"
+                       type="number">
+
+                <span asp-validation-for="addPlayerViewModel.price" />
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Rating"
+                       asp-for="addPlayerViewModel.rating"
+                       type="number">
+
+                <span asp-validation-for="addPlayerViewModel.rating" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Add player
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

@@ -1,0 +1,81 @@
+﻿@model HomeViewModel
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="text-light site-heading">
+                <h2><font color="#ff5a6e">@User.Identity.Name! </font>It's time to assemble your squad!</h2>
+            </div>
+        </div>
+    </div>
+}
+
+<div id="contact" class="contact-us-area default-padding text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 contact-form">
+                <h2>Selection of football players</h2>
+
+                @Html.Partial("FormSearchPlayers", Model)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="contact-us-area default-padding text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 contact-form">
+                <h2>Selection of coaches</h2>
+
+                @Html.Partial("FormSearchCoaches", Model)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="contact-us-area default-padding text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 contact-form">
+                <h2>Selection of clubs</h2>
+
+                @Html.Partial("FormSearchClubs", Model)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (User.IsInRole("admin"))
+{
+    <div id="contact" class="contact-us-area default-padding text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 contact-form">
+                    <h2>Add new football player</h2>
+
+                    @Html.Partial("FormAddPlayers", Model)
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="contact-us-area default-padding text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 contact-form">
+                    <h2>Delete football player</h2>
+
+                    @Html.Partial("FormDeletePlayers", Model)
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

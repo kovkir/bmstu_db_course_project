@@ -1,0 +1,45 @@
+﻿@model UserViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.IdSort">
+                        <h3><font color="#ff5a6e">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.LoginSort">
+                        <h3><font color="#ff5a6e">Login</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.PermissionSort">
+                        <h3><font color="#ff5a6e">Permission</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.RatingSquadSort">
+                        <h3><font color="#ff5a6e">RatingSquad</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <h3><font color="#ff5a6e">Permission</font></h3>
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (User user in Model.users)
+                {
+                    ViewBag.RatingSquad = Model.squads.FirstOrDefault(elem => elem.Id == user.Id).Rating;
+
+                    @Html.Partial("ALLUsers", user)
+                }
+            }
+        </tbody>
+    </table>
+</div>

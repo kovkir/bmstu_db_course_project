@@ -1,0 +1,112 @@
+﻿@model HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.SearchPlayers"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Surname"
+                       asp-for="filterPlayerViewModel.surname"
+                       type="text">
+
+                <span asp-validation-for="filterPlayerViewModel.surname" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Country"
+                       asp-for="filterPlayerViewModel.country"
+                       type="text">
+
+                <span asp-validation-for="filterPlayerViewModel.country" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Club name"
+                       asp-for="filterPlayerViewModel.clubName"
+                       type="text">
+
+                <span asp-validation-for="filterPlayerViewModel.clubName" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Minimal price"
+                       asp-for="filterPlayerViewModel.minPrice"
+                       type="number">
+
+                <span asp-validation-for="filterPlayerViewModel.minPrice" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Maximum price"
+                       asp-for="filterPlayerViewModel.maxPrice"
+                       type="number">
+
+                <span asp-validation-for="filterPlayerViewModel.maxPrice" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Minimal rating"
+                       asp-for="filterPlayerViewModel.minRating"
+                       type="number">
+
+                <span asp-validation-for="filterPlayerViewModel.minRating" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Maximum rating"
+                       asp-for="filterPlayerViewModel.maxRating"
+                       type="number">
+
+                <span asp-validation-for="filterPlayerViewModel.maxRating" />
+            </div>
+        </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="col-md-12">
+                <div class="form-group">
+                    <h4>Which players to look for</h4>
+
+                    <select asp-for="filterPlayerViewModel.playerSearch" class="form-control form-control-lg">
+                        <option value="AllPlayers">All players</option>
+                        <option value="MySquadPlayers">Players from my squad</option>
+                    </select>
+                </div>
+            </div>
+        }
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Find players
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>
