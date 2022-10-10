@@ -12,5 +12,3 @@ build : rpz.tex
 move : rpz.pdf
 	-mkdir ../pdf
 	mv rpz.pdf ../pdf/ 
-	-mkdir ../out        
-	-mv *.aux *.log *.bbl *.blg *.dvi *.out *.toc *.bcf *.xml ../out/
